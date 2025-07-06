@@ -2,7 +2,7 @@
 msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
 
 #Installez kubectl
-curl -LO https://dl.k8s.io/release/v1.33.0/bin/windows/amd64/kubectl.exe
+https://dl.k8s.io/release/v1.33.0/bin/windows/amd64/kubectl.exe
 
 #Installez eksctl
 https://eksctl.io/installation/
