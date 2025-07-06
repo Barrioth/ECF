@@ -1,0 +1,39 @@
+#Installez AWS CLI
+msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+
+#Installez kubectl
+curl -LO https://dl.k8s.io/release/v1.33.0/bin/windows/amd64/kubectl.exe
+
+#Installez eksctl
+https://eksctl.io/installation/
+
+#Ajout aux variables d'environnement parce que les devs sont des fainéants et ce n'est pas une feature de base a l'execution du .exe
+
+#Configurer AWS CLI et creer le cluster eks
+aws configure
+eksctl create cluster --name ekscluster --region eu-west-3 --nodes 2
+kubectl get nodes
+
+#Creation du fichier lambda_function.py
+#Archivagez le code de la lambda
+Compress-Archive -Path lambda_function.py -DestinationPath lambda.zip
+Expand-Archive -Path lambda.zip -DestinationPath .\test-zip -Force
+#Creation d'un role AWSLambdaBasicExecutionRole
+
+# Creation de la fonction Lambda
+aws lambda create-function `                                                                           
+>>   --function-name HelloLambda `
+>>   --runtime python3.12 `
+>>   --role arn:aws:iam::677273281507:role/AWSLambdaBasicExecutionRole `
+>>   --handler lambda_function.lambda_handler `
+>>   --zip-file fileb://lambda.zip `
+>>   --region eu-west-3
+
+#Tester la fonction
+aws lambda invoke `
+  --function-name HelloLambda `
+  --payload '{}' `
+  --region eu-west-3 `
+  output.json
+
+Get-Content output.json
