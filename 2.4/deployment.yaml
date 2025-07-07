@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecf-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecf
+  template:
+    metadata:
+      labels:
+        app: ecf
+    spec:
+      containers:
+        - name: ecf
+          image: ecf-app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ecf-service
+spec:
+  selector:
+    app: ecf
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
