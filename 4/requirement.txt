@@ -1,0 +1,12 @@
+node.js
+angular CLI
+
+sudo apt update
+sudo apt install nodejs 
+npm -y
+node -v
+npm -vsudo npm install -g @angular/cli
+ng version
+sudo npm install -g n
+sudo n stable
+sudo n 22.17.0
