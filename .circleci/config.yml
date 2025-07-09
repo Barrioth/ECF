@@ -1,13 +1,10 @@
-# This config was automatically generated from your source code
-# Stacks detected: deps:java:2.3,deps:node:4/hello-world
 version: 2.1
 orbs:
   node: circleci/node@5
 jobs:
   test-node:
-    # Install node dependencies and run tests
     executor: node/default
-    working_directory: ~/project/4/hello-world
+    working_directory: ~/project/5/hello-world
     steps:
       - checkout:
           path: ~/project
@@ -17,9 +14,8 @@ jobs:
           name: Run tests
           command: npm test --passWithNoTests
   build-node:
-    # Build node project
     executor: node/default
-    working_directory: ~/project/4/hello-world
+    working_directory: ~/project/5/hello-world
     steps:
       - checkout:
           path: ~/project
@@ -30,7 +26,6 @@ jobs:
       - run:
           name: Create the ~/artifacts directory if it doesn't exist
           command: mkdir -p ~/artifacts
-      # Copy output to artifacts dir
       - run:
           name: Copy artifacts
           command: cp -R build dist public .output .next .docusaurus ~/artifacts 2>/dev/null || true
@@ -60,11 +55,9 @@ jobs:
           paths:
             - ~/.m2/repository
   deploy:
-    # This is an example deploy job, not actually used by the workflow
     docker:
       - image: cimg/base:stable
     steps:
-      # Replace this with steps to deploy to users
       - run:
           name: deploy
           command: '#e.g. ./deploy.sh'
@@ -77,6 +70,3 @@ workflows:
             - test-node
             - test-java
       - test-java
-    # - deploy:
-    #     requires:
-    #       - build-node
