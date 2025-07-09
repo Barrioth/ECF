@@ -4,7 +4,7 @@ orbs:
 jobs:
   test-node:
     executor: node/default
-    working_directory: ~/project/5/hello-world
+    working_directory: ~/project/4/hello-world
     steps:
       - checkout:
           path: ~/project
@@ -15,7 +15,7 @@ jobs:
           command: npm test --passWithNoTests
   build-node:
     executor: node/default
-    working_directory: ~/project/5/hello-world
+    working_directory: ~/project/4/hello-world
     steps:
       - checkout:
           path: ~/project
