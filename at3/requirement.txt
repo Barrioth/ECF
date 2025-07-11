@@ -90,6 +90,10 @@ EXPOSE 8080
 ENTRYPOINT ["java","-jar","app.jar"]
 
 #commandbuild
+sudo apt update
+sudo apt install openjdk-17-jdk -y
+
+
 mvn clean package
 docker build -t spring-hello .
 docker run -d -p 8080:8080 --name spring-hello-container spring-hello

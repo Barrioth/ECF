@@ -1,33 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecf-app
+  name: spring-hello
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: ecf
+    matchLabels: {app: spring-hello}
   template:
     metadata:
-      labels:
-        app: ecf
+      labels: {app: spring-hello}
     spec:
       containers:
-        - name: ecf
-          image: ecf-app:latest
-          imagePullPolicy: Never
-          ports:
-            - containerPort: 8080
+      - name: spring-hello
+        image: qurupeco/spring-hello
+        ports:
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ecf-service
+  name: spring-hello-nodeport
 spec:
-  selector:
-    app: ecf
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
   type: NodePort
+  selector:
+    app: spring-hello
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30080
