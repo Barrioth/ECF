@@ -1,12 +1,8 @@
-node.js
-angular CLI
+cd /mnt/d/PROFESSIONNEL/ECF/5/hello-world-app/
 
-sudo apt update
-sudo apt install nodejs 
-npm -y
-node -v
-npm -vsudo npm install -g @angular/cli
-ng version
-sudo npm install -g n
-sudo n stable
-sudo n 22.17.0
+npm init -y
+sudo npm install -g @angular/cli
+npx ng new hello-world --directory=.
+npm install
+docker build -t hello-world-app .
+npm start
