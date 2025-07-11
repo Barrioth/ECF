@@ -102,3 +102,8 @@ http://localhost:8080
 #WSL curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/
 
 #PS curl http://localhost:8080/
+
+
+
+curl http://192.168.49.2:31601
+minikube service kibana
