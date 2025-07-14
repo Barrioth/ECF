@@ -107,3 +107,11 @@ http://localhost:8080
 
 curl http://192.168.49.2:31601
 minikube service kibana
+
+kubectl passwd uwNSTZBYLBuWiP4E24CB
+
+token 
+kubectl exec -it elasticsearch-0 -- bin/elasticsearch-create-enrollment-token -s kibana
+eyJ2ZXIiOiI4LjkuMCIsImFkciI6WyIxMC4yNDQuMC4xNjo5MjAwIl0sImZnciI6ImE2YTYyOTdjMjYyNTU3NDY3MjFjMTNjMThlN2JmZDNiMzYzOGQ2MThmYWQxMzYxZWJiOWJhMDMzZjIyODgyNTkiLCJrZXkiOiJUdUJZLVpjQjZTaEE2alBmR041MDpISzQ3MWJjdlFRQ0dsd011ZXM2RGZnIn0=
+
+kubectl exec -it kibana-5459c858d9-m4c66 -- bin/kibana-verification-code
